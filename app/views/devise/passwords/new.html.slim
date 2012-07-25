@@ -1,0 +1,13 @@
+.alert style="background-color:white; float:left;"
+	h2 Forgot your password?
+	= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+	  = devise_error_messages!
+	  div
+      .controls
+        .input-prepend
+          span.add-on
+            i.icon-envelope
+          = f.email_field :email, class: 'span3', placeholder: 'Email'
+	  = f.submit "Send me reset password instructions", class: 'btn-primary btn', style: 'float:left;'
+	  div style='direction:rtl;font-size:11px;margin-top:-4px;'
+			= render "devise/shared/links"

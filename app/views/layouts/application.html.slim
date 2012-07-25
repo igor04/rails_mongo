@@ -1,11 +1,12 @@
 doctype html
 html
-	head
+  head
     title TestMongo
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 
 body
-  = render 'share/auth_bar'
-  = yield
+  = render 'share/nav_bar'
+  .container-fluid
+    = yield
