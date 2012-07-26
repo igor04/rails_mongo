@@ -42,9 +42,14 @@ group :test, :development do
   gem 'capybara'
   gem 'database_cleaner'
   gem "rspec-rails"
+  
+  gem "nifty-generators"
 end
 
 gem 'slim-rails'
 gem 'devise'
 gem 'omniauth'
+gem 'omniauth-openid'
 gem 'cancan'
+
+gem "mocha", :group => :test

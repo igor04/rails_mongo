@@ -1,25 +1,23 @@
-.alert.alert-success style="background-color:white; float:left;"
+.alert.alert-success style="background-color:white; color: #999; float:left"
   h2 Sign in
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    div
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name), html: { style: "overflow:hidden;"}) do |f|
+    div style='float:left; margin-top:5px; padding-right:20px; border-right: 1px solid'
       .controls
         .input-prepend
           span.add-on
             i.icon-envelope
           = f.email_field :email, class: 'span2', placeholder: 'Email'
-
-    div
       .controls
         .input-prepend
           span.add-on
           = f.password_field :password, class: 'span2', placeholder: 'Password'
-   
-    div
-    - if devise_mapping.rememberable?
-      label.checkbox
-        = f.check_box :remember_me
-        span Remember me
+      - if devise_mapping.rememberable?
+        label.checkbox
+          = f.check_box :remember_me
+          span Remember me
+      
+      = f.submit "Sign in", class: 'btn btn-primary', style: 'float:left'
     
-    = f.submit "Sign in", class: 'btn btn-primary', style: 'float:left'
-    div style='direction:rtl;font-size:11px;margin-top:-4px;'
+    div style="border-left: 1px solid; float:left; padding-left:20px; margin-left:-1px;"
+      = devise_error_messages!
       = render "devise/shared/links"

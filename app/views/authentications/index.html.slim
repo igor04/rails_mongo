@@ -1,0 +1,20 @@
+- unless @authentications.empty?
+  div style="overflow:hidden"
+    p 
+      strong You can sign in to this account using:
+    .authentications
+      - @authentications.each do |authentication| 
+        .authentication
+          = image_tag "#{authentication.provider}_32.png", :size => "32x32"
+          .provider = authentication.provider.titleize
+          .uid = authentication.uid
+          = link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"
+      .clear
+
+div
+  - unless @authentications.where(:provider => 'twitter').first
+    div 
+      strong Add service to sign in with:
+    a href="/auth/twitter" class="auth_provider"
+      = image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter"
+      Twitter

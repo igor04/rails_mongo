@@ -1,13 +1,16 @@
-.alert style="background-color:white; float:left;"
-	h2 Forgot your password?
-	= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-	  = devise_error_messages!
-	  div
+.alert.alert-success style="background-color:white; color: #999; float:left"
+  h2 Forgot your password?
+  = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post , :style => "overflow:hidden;"}) do |f|
+
+    div style='float:left; margin-top:5px; padding-right:20px; border-right: 1px solid'
       .controls
         .input-prepend
           span.add-on
             i.icon-envelope
-          = f.email_field :email, class: 'span3', placeholder: 'Email'
-	  = f.submit "Send me reset password instructions", class: 'btn-primary btn', style: 'float:left;'
-	  div style='direction:rtl;font-size:11px;margin-top:-4px;'
-			= render "devise/shared/links"
+          = f.email_field :email, class: 'span2', placeholder: 'Email'
+      
+      = f.submit "Rocover me password", class: 'btn-primary btn', style: 'float:left;'
+   
+    div style="border-left: 1px solid; float:left; padding-left:20px; margin-left:-1px;"
+      = devise_error_messages!
+      = render "devise/shared/links"
