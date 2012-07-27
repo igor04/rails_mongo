@@ -1,8 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     super
-    @user.save!
-    @user.authentications.create(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])
+    if @user.save
+      @user.authentications.create(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])
+    end
     session[:omniauth] = nil unless @user.new_record?
   end
   

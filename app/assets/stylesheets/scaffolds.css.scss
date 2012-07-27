@@ -8,8 +8,7 @@
     border-color: orange;}}
 
 #error_explanation {
-  float: left;
-  width: 280px;
+  max-width: 280px;
   color: #999;
   h2 {
     font-size: 12px; }
