@@ -49,9 +49,6 @@ end
 gem 'slim-rails'
 gem 'devise'
 gem 'omniauth'
-gem 'ruby-openid'
 gem 'omniauth-openid'
 gem 'omniauth-twitter'
 gem 'cancan'
-
-gem "mocha", :group => :test
