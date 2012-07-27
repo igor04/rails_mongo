@@ -10,8 +10,10 @@
 #error_explanation {
   max-width: 280px;
   color: #999;
-  h2 {
-    font-size: 12px; }
+  div {
+    font-size: 12px;
+    margin-bottom: 5px;
+    font-weight: bold; }
   ul li {
     font-size: 12px;
     list-style: square; } }
