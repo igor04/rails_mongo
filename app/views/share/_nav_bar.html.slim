@@ -6,7 +6,7 @@
       .btn-group.pull-right
         - if user_signed_in?
           a.btn.btn-warning.dropdown-toggle data-toggle="dropdown" href="#"
-            = current_user.email
+            = current_user.nickname
             span.caret
           ul.dropdown-menu
             li
@@ -27,8 +27,10 @@
             li
               = link_to 'Sign in with Twitter','/auth/twitter'
             li
-              = link_to 'Sign in with OpenID', '/auth/open_id'
-            
+              = link_to 'Sign in with Google', '/auth/google'
+            li
+              = link_to 'Sign in with Yahoo', '/auth/yahoo'
+
             li.divider
             li
               = link_to 'Sign Up', new_user_registration_path

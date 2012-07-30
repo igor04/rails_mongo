@@ -1,20 +1,22 @@
 class User
   include Mongoid::Document
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
-
-
+         :recoverable, :rememberable, :trackable, :validatable,
+         :authentication_keys => [:login]
+  
   ## Database authenticatable
-  field :email,              :type => String, :default => ""
-  field :encrypted_password, :type => String, :default => ""
+  field :email,               :type => String, :default => ""
+  field :encrypted_password,  :type => String, :default => ""
+  field :nickname,            :type => String
 
   # validates_presence_of :email
   # validates_presence_of :encrypted_password
-  validates :password, :confirmation =>true
-  
+  validates :password, :confirmation => true
+
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -44,4 +46,15 @@ class User
   # field :authentication_token, :type => String
 
   has_many :authentications, dependent: :destroy
+  
+  attr_accessor :login
+  
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      self.any_of({ :nickname =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+    else
+      super
+    end
+  end
 end

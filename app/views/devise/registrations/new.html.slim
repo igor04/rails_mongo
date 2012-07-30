@@ -10,6 +10,11 @@
       .controls
         .input-prepend
           span.add-on
+            i.icon-user
+          = f.text_field :nickname, class: 'span2', placeholder: 'Nickname'
+      .controls
+        .input-prepend
+          span.add-on
           = f.password_field :password, class: 'span2', placeholder: 'Password'
       .controls
         .input-prepend

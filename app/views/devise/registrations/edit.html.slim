@@ -10,6 +10,12 @@ h2
         = f.email_field :email, class: 'span3', placeholder: 'Email'
   div
     .controls
+      .input-prepend
+        span.add-on
+          i.icon-user
+        = f.text_field :nickname, class: 'span3', placeholder: 'Nickname'
+  div
+    .controls
       i (leave blank if you don't want to change it)
       .input-prepend
         span.add-on

@@ -5,8 +5,9 @@
       .controls
         .input-prepend
           span.add-on
-            i.icon-envelope
-          = f.email_field :email, class: 'span2', placeholder: 'Email'
+            i.icon-user
+          = f.text_field :login, class: 'span2', placeholder: 'Email or Nickname'
+
       .controls
         .input-prepend
           span.add-on

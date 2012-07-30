@@ -12,7 +12,7 @@
       .clear
 
 div
-  - if @authentications.count < 2
+  - if @authentications.count < 3
     div 
       strong Add service to sign in with:
   
@@ -21,7 +21,12 @@ div
       = image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter"
       Twitter
   
+  - unless @authentications.provider_exists? :google
+    a href="/auth/google" class="auth_provider"
+      = image_tag "google_64.png", :size => "64x64", :alt => "Google"
+      Google
+
   - unless @authentications.provider_exists? :open_id
-    a href="/auth/open_id" class="auth_provider"
-      = image_tag "open_id_64.png", :size => "64x64", :alt => "OpenID"
-      OpenID
+    a href="/auth/yahoo" class="auth_provider"
+      = image_tag "yahoo_64.png", :size => "64x64", :alt => "Yahoo"
+      Yahoo
