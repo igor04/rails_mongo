@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 
 gem 'mongoid'
+gem 'mongoid_slug', :git => "git://github.com/hakanensari/mongoid-slug.git"
 
 
 # Gems used only for assets and not required
@@ -44,6 +45,7 @@ group :test, :development do
   gem "rspec-rails"
   
   gem "nifty-generators"
+  gem 'rack-mini-profiler'
 end
 
 gem 'slim-rails'
@@ -52,3 +54,4 @@ gem 'omniauth'
 gem 'omniauth-openid'
 gem 'omniauth-twitter'
 gem 'cancan'
+gem 'draper'
