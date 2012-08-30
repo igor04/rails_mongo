@@ -1,0 +1,5 @@
+= form_for @user_information do |f|
+	div = f.text_field :firstname, placeholder: 'Firstname'
+	div = f.text_field :lastname, placeholder: 'Lastname'
+	div = date_select  :user_information, :birthday, { :include_blank => true, :start_year => 1970, :end_year => Time.now.year}
+	div = f.submit

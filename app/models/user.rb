@@ -13,10 +13,6 @@ class User
   field :encrypted_password,  :type => String, :default => ""
   field :nickname,            :type => String
 
-  # validates_presence_of :email
-  # validates_presence_of :encrypted_password
-  validates :password, :confirmation => true
-
   ## Recoverable
   field :reset_password_token,   :type => String
   field :reset_password_sent_at, :type => Time
@@ -44,17 +40,34 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
-
-  has_many :authentications, dependent: :destroy
   
+  validates :nickname, presence: true
+  
+  has_many :authentications, dependent: :destroy
+  has_one :user_information, dependent: :destroy
+
   attr_accessor :login
   
-  def self.find_first_by_auth_conditions(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      self.any_of({ :nickname =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
-    else
-      super
+  def to_param
+    nickname
+  end
+  
+  def information
+    user_information
+  end
+    
+  class << self
+    def find_by_slug(slug)
+      find_by nickname: slug 
+    end
+
+    def find_first_by_auth_conditions(warden_conditions)
+      conditions = warden_conditions.dup
+      if login = conditions.delete(:login)
+        self.any_of({ :nickname =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+      else
+        super
+      end
     end
   end
 end

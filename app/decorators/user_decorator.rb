@@ -1,8 +1,20 @@
 class UserDecorator < ApplicationDecorator
   decorates :user
 
-  def test
-    h.link_to 'Home', user
+  def initials
+    user_info = user.user_information
+    if user_info.firstname.present? or user_info.lastname.present?
+      "#{user_info.firstname} #{user_info.lastname} (#{user.nickname})" 
+    else
+      "Your initials (#{user.nickname})"
+    end
+  end
+
+  def birthday
+    user_info = user.user_information
+    if user_info.birthday.present?
+      h.content_tag :div, "Birthday: #{user_info.birthday.strftime("%d/%m/%Y")}"
+    end
   end
   # Accessing Helpers
   #   You can access any helper via a proxy

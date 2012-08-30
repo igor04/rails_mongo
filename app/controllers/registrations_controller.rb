@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     super
+    @user.user_information = UserInformation.create()
+    
     if @user.save && session[:omniauth]
       @user.authentications.create(:provider => session[:omniauth]['provider'], :uid => session[:omniauth]['uid'])
     end

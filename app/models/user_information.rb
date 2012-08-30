@@ -1,8 +1,11 @@
 class UserInformation
   include Mongoid::Document
+ 	include Mongoid::MultiParameterAttributes
+  
+  field :user_id, 	:type => Integer
+  field :firstname,	:type => String
+  field :lastname,	:type => String
+  field :birthday,	:type => Date
 
-  field :firstname,	:type => String, :default => ""
-  field :lastname,	:type => String, :default => ""
-  field :birthday,	:type => Time, :default => ""
-
+  belongs_to :user
 end
