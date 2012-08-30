@@ -41,7 +41,7 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
   
-  validates :nickname, presence: true
+  validates :nickname, presence: true, uniqueness: true
   
   has_many :authentications, dependent: :destroy
   has_one :user_information, dependent: :destroy
@@ -61,6 +61,7 @@ class User
       find_by nickname: slug 
     end
 
+    # method for devise authentication with eamil or nickname
     def find_first_by_auth_conditions(warden_conditions)
       conditions = warden_conditions.dup
       if login = conditions.delete(:login)

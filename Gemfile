@@ -45,7 +45,6 @@ group :test, :development do
   gem "rspec-rails"
   
   gem "nifty-generators"
-  gem 'rack-mini-profiler'
 end
 
 gem 'slim-rails'
@@ -55,3 +54,4 @@ gem 'omniauth-openid'
 gem 'omniauth-twitter'
 gem 'cancan'
 gem 'draper'
+gem 'inherited_resources'
